@@ -1,0 +1,19 @@
+kubectl apply -f redis-master-deployment.yaml
+kubectl apply -f redis-master-service.yaml
+kubectl apply -f redis-slave-deployment.yaml
+kubectl apply -f redis-slave-service.yaml
+kubectl apply -f frontend-deployment.yaml
+kubectl apply -f frontend-service.yaml
+
+minikube service frontend --url
+
+kubectl scale deployment frontend --replicas=5
+
+kubectl logs -f POD-NAME
+
+
+
+kubectl delete deployment -l app=redis
+kubectl delete service -l app=redis
+kubectl delete deployment -l app=guestbook
+kubectl delete service -l app=guestbook
